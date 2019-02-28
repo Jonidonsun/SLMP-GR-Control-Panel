@@ -60,7 +60,7 @@ namespace SLMPLauncher
                 {
                     w =vDevMode.dmPelsWidth;
                     h = vDevMode.dmPelsHeight;
-                    if (w >= 800 && h >= 600 && (!FormOptions.screenListW.Contains(w) || !FormOptions.screenListH.Contains(h)))
+                    if (w >= 800 && h >= 600)
                     {
                         FormOptions.screenListW.Add(w);
                         FormOptions.screenListH.Add(h);

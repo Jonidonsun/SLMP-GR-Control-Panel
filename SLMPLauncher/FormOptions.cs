@@ -597,7 +597,7 @@ namespace SLMPLauncher
                     {
                         w = FuncParser.stringToInt(result["HorizontalResolution"].ToString());
                         h = FuncParser.stringToInt(result["VerticalResolution"].ToString());
-                        if (w >= 800 && h >= 600 && (!screenListW.Contains(w) || !screenListH.Contains(h)))
+                        if (w >= 800 && h >= 600)
                         {
                             screenListW.Add(w);
                             screenListH.Add(h);
@@ -613,11 +613,22 @@ namespace SLMPLauncher
             {
                 FuncResolutions.Resolutions();
             }
-            if (screenListW.Count == screenListH.Count && screenListW.Count > 1)
+            if (screenListW.Count == screenListH.Count && screenListW.Count > 0)
             {
+                string line = null;
                 for (int i = 0; i < screenListW.Count; i++)
                 {
-                    comboBoxResolutionTAB.Items.Add(screenListW[i].ToString() + " x " + screenListH[i].ToString());
+                    line = screenListW[i].ToString() + " x " + screenListH[i].ToString();
+                    if (!comboBoxResolutionTAB.Items.Contains(line))
+                    {
+                        comboBoxResolutionTAB.Items.Add(line);
+                    }
+                    else
+                    {
+                        screenListW.RemoveAt(i);
+                        screenListH.RemoveAt(i);
+                        i--;
+                    }
                 }
             }
             comboBoxResolutionTAB.SelectedIndexChanged -= comboBoxResolution_SelectedIndexChanged;
