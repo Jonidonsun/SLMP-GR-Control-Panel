@@ -266,10 +266,10 @@ namespace SLMPLauncher
             if (!blockRefreshList)
             {
                 blockRefreshList = true;
+                goodAllMasters = true;
                 bool fail = false;
                 if (e.Item.Checked)
                 {
-                    goodAllMasters = true;
                     checkItem(e.Item, true);
                 }
                 else if (e.Item.Text != "Skyrim.esm" && e.Item.Text != "Update.esm" && e.Item.Text != "Dawnguard.esm" && e.Item.Text != "HearthFires.esm" && e.Item.Text != "Dragonborn.esm")

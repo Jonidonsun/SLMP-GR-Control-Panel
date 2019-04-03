@@ -212,7 +212,7 @@ namespace SLMPLauncher
                 "   Trebuchet MS",
                 "",
                 "[Updates]",
-                "UpdateHost=http://www.slmp.ru/_SLMP-GR/2.5/" });
+                "UpdateHost=http://www.slmp.ru/_SLMP-GR/2.6/" });
             }
             else
             {

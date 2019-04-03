@@ -192,20 +192,21 @@ namespace SLMPLauncher
                 try
                 {
                     FileStream fs = File.OpenRead(file);
-                    byte[] bytesFile1 = new byte[4];
-                    fs.Read(bytesFile1, 0, 4);
-                    if (string.Join("", bytesFile1) == "84698352")
+                    byte[] bytesFile = new byte[2048];
+                    fs.Read(bytesFile, 0, 2048);
+                    fs.Close();
+                    if (string.Join("", bytesFile.Take(4)) == "84698352")
                     {
-                        bool must = false;
-                        int read = 0;
                         string line = null;
-                        byte[] bytesFile2 = new byte[1024];
-                        fs.Seek(46, SeekOrigin.Begin);
-                        fs.Seek(47 + fs.ReadByte(), SeekOrigin.Begin);
-                        fs.Read(bytesFile2, 0, 1024);
-                        for (int i = 0; i < bytesFile2.Count(); i++)
+                        bool must = false;
+                        int read = 48 + (bytesFile[47] << 8 | bytesFile[46]);
+                        if (string.Join("", bytesFile.Skip(read).Take(4)) == "83786577")
                         {
-                            read = bytesFile2[i];
+                            read = (read + 6) + (bytesFile[read + 5] << 8 | bytesFile[read + 4]);
+                        }
+                        for (int i = read; i < bytesFile.Count(); i++)
+                        {
+                            read = bytesFile[i];
                             if ((line == "GRUP" || line == "ONAM") && !must)
                             {
                                 break;
@@ -213,6 +214,12 @@ namespace SLMPLauncher
                             else if (line == "MAST" && !must)
                             {
                                 must = true;
+                                line = null;
+                                i++;
+                            }
+                            else if (line == "DATA" && !must)
+                            {
+                                i = (i + 1) + (bytesFile[i + 1] << 8 | bytesFile[i]);
                                 line = null;
                             }
                             else if (read >= 32 && read <= 126)
@@ -230,10 +237,8 @@ namespace SLMPLauncher
                                 line = null;
                             }
                         }
-                        bytesFile2 = null;
                     }
-                    bytesFile1 = null;
-                    fs.Close();
+                    bytesFile = null;
                 }
                 catch
                 {

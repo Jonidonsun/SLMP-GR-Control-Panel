@@ -217,7 +217,7 @@ namespace SLMPLauncher
                 {
                     unpackRAR(FormMain.pathLauncherFolder + @"CPFiles\System\AR(4)FF.rar");
                 }
-                if (File.Exists(FormMain.pathGameFolder + @"Data\DisableFastTravel.bsa") && new FileInfo(FormMain.pathGameFolder + @"Data\DisableFastTravel.bsa").Length != 45594)
+                if (File.Exists(FormMain.pathGameFolder + @"Data\DisableFastTravel.bsa") && new FileInfo(FormMain.pathGameFolder + @"Data\DisableFastTravel.bsa").Length != 45717)
                 {
                     unpackRAR(FormMain.pathLauncherFolder + @"CPFiles\System\AR(4)DFT.rar");
                 }
@@ -226,7 +226,7 @@ namespace SLMPLauncher
             {
                 FuncFiles.deleteAny(FormMain.pathGameFolder + @"Data\Frostfall-WS.esp");
                 FuncFiles.deleteAny(FormMain.pathGameFolder + @"Data\Frostfall-WS.bsa");
-                if (File.Exists(FormMain.pathGameFolder + @"Data\DisableFastTravel.bsa") && new FileInfo(FormMain.pathGameFolder + @"Data\DisableFastTravel.bsa").Length != 45595)
+                if (File.Exists(FormMain.pathGameFolder + @"Data\DisableFastTravel.bsa") && new FileInfo(FormMain.pathGameFolder + @"Data\DisableFastTravel.bsa").Length != 45701)
                 {
                     unpackRAR(FormMain.pathLauncherFolder + @"CPFiles\DisableFastTravel.rar");
                 }
